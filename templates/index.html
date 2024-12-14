@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoramento DHT11</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            transition: background-color 0.5s; /* Efeito de transição ao mudar de cor */
+        }
+        h1 {
+            color: #333;
+        }
+        .dados {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .alerta {
+            font-size: 28px;
+            color: white;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <meta http-equiv="refresh" content="5"> <!-- Atualiza a página a cada 5 segundos -->
+</head>
+<body style="background-color: {{ 'red' if temperatura|float > 35 else 'white' }};">
+    <h1>Monitoramento de Temperatura e Umidade</h1>
+    <div class="dados">
+        <p><strong>Umidade:</strong> {{ umidade }}%</p>
+        <p><strong>Temperatura:</strong> {{ temperatura }}°C</p>
+    </div>
+    {% if temperatura|float > 35 %}
+    <div class="alerta">
+        ⚠️ Acionando bomba de água para irrigação! ⚠️
+    </div>
+    {% endif %}
+</body>
+</html>
